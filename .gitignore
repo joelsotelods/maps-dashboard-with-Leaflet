@@ -1,0 +1,37 @@
+# ignore macOS files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+.AppleDouble
+.LSOverride
+
+
+################
+
+
+#FolderName/
+
+
+#FolderName/
+
+# ipynb_checkpoints
+.ipynb_checkpoints
+*/.ipynb_checkpoints/*
+.ipynb_checkpoints/
+*checkpoint.ipynb
+
+#for the pycache
+*.pyc
+*.pyo
+
+
+#only for the Pyber project
+
+*.pdf
+
+
+.eslintrc.json
