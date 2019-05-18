@@ -23,7 +23,7 @@ d3.json(quakes, function(geoJSON) {
 
         style: function(geoFeature) {
             return {
-                fillColor: 'purple',//Color(geoFeature.properties.mag),
+                fillColor: Color(geoFeature.properties.mag),
                 fillOpacity: 0.5,
                 weight: 0.1,
                 color: 'black'
@@ -39,6 +39,33 @@ d3.json(quakes, function(geoJSON) {
 });
 
 var boundary = new L.LayerGroup();
+
+d3.json(plates, function(geoJSON) {
+    L.geoJSON(geoJSON.features, {
+        style: function(geoFeature) {
+            return {
+                weight: 2,
+                color: 'black'
+            }
+        },
+    }).addTo(boundary);
+})
+
+function Color(magnitude) {
+    if (magnitude > 5) {
+        return "red"
+    } else if (magnitude > 4) {
+        return "orange"
+    } else if (magnitude > 3) {
+        return "yellow"
+    } else if (magnitude > 2) {
+        return "green"
+    } else if (magnitude > 1) {
+        return "blue"
+    } else {
+        return "purple"
+    }
+};
 
 function createMap() {
 
@@ -82,4 +109,21 @@ function createMap() {
 
     L.control.layers(baseLayers, overlays).addTo(mymap);
 
+    var legend = L.control({position: 'bottomright'});
+
+    legend.onAdd = function(map) {
+        var div = L.DomUtil.create('div', 'info legend'),
+            magnitude = [0, 1, 2, 3, 4, 5],
+            labels = [];
+
+        div.innerHTML += "<h4 style='margin:4px'>Magnitude</h4>"
+
+        for (var i = 0; i < magnitude.length; i++) {
+            div.innerHTML +=
+                '<i style="background:' + Color(magnitude[i] + 1) + '"></i> ' +
+                magnitude[i] + (magnitude[i + 1] ? '&ndash;' + magnitude[i + 1] + '<br>' : '+');
+        }
+        return div;
+    };
+    legend.addTo(mymap);
 }
