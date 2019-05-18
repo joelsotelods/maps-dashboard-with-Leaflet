@@ -12,6 +12,11 @@ Thumbs.db
 
 ################
 
+#ignore config file (DB_password)
+config.py
+
+## API_KEYS
+config.js
 
 #FolderName/
 

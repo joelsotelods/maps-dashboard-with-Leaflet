@@ -3,6 +3,7 @@ console.log(quakes)
 var plates = "https://raw.githubusercontent.com/fraxen/tectonicplates/master/GeoJSON/PB2002_boundaries.json"
 console.log(plates)
 
+console.log(API_KEY)
 
 d3.json(quakes, function(geoJSON) {
     L.geoJSON(geoJSON.features, {
